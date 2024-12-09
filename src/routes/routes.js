@@ -1,6 +1,9 @@
-import passwordEncypter from "../controllers/encrypt.js";
+import genPasswod from "../controllers/genPassword.js";
+
 const routes = (fastify, options, done) => {
-  fastify.get("/", passwordEncypter);
+  fastify.get("/", (req, reply) => {
+    return reply.status(201).send({ data: "Rota raiz" });
+  });
 
   fastify.post("/create", (req, reply) => {
     return reply.status(201).send({ data: "Rota de gerar criptografia" });

@@ -1,5 +1,5 @@
 import Fastify from "fastify";
-const app = Fastify({ logger: true });
+const app = Fastify();
 const PORT = 8080;
 import Rotas from "./src/routes/routes.js";
 app.register(Rotas, { prefix: "pass" });
