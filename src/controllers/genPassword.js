@@ -1,4 +1,4 @@
-const generator = (length, upper, digits, special) => {
+const generator = (length, digits, special) => {
   const lower = "abcdefghijklmnopqrstuvwxyz";
   const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const useDigits = "0123456789";
@@ -7,13 +7,13 @@ const generator = (length, upper, digits, special) => {
   let toGenerate;
 
   if (digits) {
-    toGenerate = lower + useUpper + useDigits;
+    toGenerate = lower + upper + useDigits;
   }
   if (special) {
-    toGenerate = lower + useUpper + useSpecial;
+    toGenerate = lower + upper + useSpecial;
   }
   if (digits === true && special === true) {
-    toGenerate = lower + useUpper + useDigits + useSpecial;
+    toGenerate = lower + upper + useDigits + useSpecial;
   } else {
     toGenerate = lower + upper;
   }
