@@ -2,7 +2,7 @@ import genPasswod from "../controllers/genPassword.js";
 
 const routes = (fastify, options, done) => {
   fastify.get("/", (req, reply) => {
-    return reply.status(201).send({ data: "Rota raiz" });
+    return reply.status(201).send({ data: "Conectado ao algopass!" });
   });
 
   fastify.put("/update/:id", (req, reply) => {
@@ -18,14 +18,14 @@ const routes = (fastify, options, done) => {
   });
 
   fastify.post("/password", (req, reply) => {
-    const { length, upper, digits, special } = req.body;
+    const { length, digits, special } = req.body;
 
     if (!length) {
       return reply
         .status(400)
         .send({ message: "O tamanho da senha não foi fornecido." });
     }
-    const password = genPasswod(length, upper, digits, special);
+    const password = genPasswod(length, digits, special);
 
     return reply.send({
       messag: "senha criada com sucesso",
