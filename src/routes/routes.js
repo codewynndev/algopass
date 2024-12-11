@@ -6,7 +6,10 @@ const routes = (fastify, options, done) => {
   });
 
   fastify.post("/create", (req, reply) => {
-    return reply.status(201).send({ data: "Rota de gerar criptografia" });
+    const { length, upper, digits, special } = req.body;
+    return reply
+      .status(201)
+      .send({ data: genPasswod(length, upper, digits, special) });
   });
 
   fastify.delete("/delete", (req, reply) => {
