@@ -14,6 +14,9 @@ Fastify.register(fastifyCors, {
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 });
+Fastify.get("/", async (req, reply) => {
+  reply.send({ message: "Bem-vindo ao servidor do sistema!" });
+});
 // Registrando as rotas com o prefixo 'pass'
 app.register(Rotas, { prefix: "pass" });
 
