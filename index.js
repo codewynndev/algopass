@@ -8,13 +8,13 @@ import fastifyCors from "fastify-cors";
 cors();
 dotenv.config();
 
-Fastify.register(fastifyCors, {
+app.register(fastifyCors, {
   origin: true,
   methods: ["GET", "POST", "PUT"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 });
-Fastify.get("/", async (req, reply) => {
+app.get("/", async (req, reply) => {
   reply.send({ message: "Bem-vindo ao servidor do sistema!" });
 });
 // Registrando as rotas com o prefixo 'pass'
