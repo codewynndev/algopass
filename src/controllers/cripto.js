@@ -1,5 +1,4 @@
 import bcrypt from "bcrypt";
-import dotenv from "dotenv";
 
 const saltRounds = parseInt(process.env.NUMERO_DE_SALTS) || 10;
 
