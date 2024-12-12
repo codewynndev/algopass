@@ -1,20 +1,36 @@
 import genPasswod from "../controllers/genPassword.js";
+import passwordEncryptor from "../controllers/cripto.js";
 
 const routes = (fastify, options, done) => {
   fastify.get("/", (req, reply) => {
     return reply.status(201).send({ data: "Conectado ao algopass!" });
   });
 
-  fastify.put("/update/:id", (req, reply) => {
-    const { id } = req.params;
-    const { content } = req.body;
+  fastify.put("/update", async (req, reply) => {
+    const { password } = req.body;
 
-    if (!content) {
-      return reply.status(400).send({ error: "Conteúdo não fornecido." });
+    try {
+      const updatedPassword = await passwordEncryptor(password);
+      return reply.status(201).send({
+        data: updatedPassword,
+        message: "Senha atualizada com sucesso",
+      });
+    } catch (error) {
+      return reply.status(400).send({
+        message: "Erro ao atualizar senha",
+      });
     }
-    return reply.status(200).send({
-      data: `Recurso com ID ${id} atualizado com o conteúdo: ${content}.`,
-    });
+  });
+
+  fastify.post("/cripto", async (req, reply) => {
+    const { password } = req.body;
+    try {
+      const newPassword = await passwordEncryptor(password);
+      return reply.status(200).send({
+        data: newPassword,
+        message: "Senha criada com sucesso",
+      });
+    } catch (error) {}
   });
 
   fastify.post("/password", (req, reply) => {
@@ -28,7 +44,7 @@ const routes = (fastify, options, done) => {
     const password = genPasswod(length, digits, special);
 
     return reply.send({
-      messag: "senha criada com sucesso",
+      messag: "Senha criada com sucesso",
       data: password,
     });
   });
