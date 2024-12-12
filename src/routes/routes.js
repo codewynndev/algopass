@@ -1,5 +1,11 @@
 import genPasswod from "../controllers/genPassword.js";
 import passwordEncryptor from "../controllers/cripto.js";
+const fastifyCors = require("fastify-cors");
+
+fastify.register(fastifyCors, {
+  origin: "*",
+  methods: ["GET", "POST"],
+});
 
 const routes = (fastify, options, done) => {
   fastify.get("/", (req, reply) => {

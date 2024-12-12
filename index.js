@@ -3,8 +3,9 @@ const app = Fastify({ logger: true });
 const PORT = 8080;
 import Rotas from "./src/routes/routes.js";
 import dotenv from "dotenv";
+import cors from "cors";
+cors();
 dotenv.config();
-
 // Registrando as rotas com o prefixo 'pass'
 app.register(Rotas, { prefix: "pass" });
 
