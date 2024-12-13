@@ -1,6 +1,6 @@
 import Fastify from "fastify";
 const app = Fastify({ logger: true });
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 import Rotas from "./src/routes/routes.js";
 import dotenv from "dotenv";
 import cors from "cors";
