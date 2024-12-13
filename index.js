@@ -4,7 +4,7 @@ const PORT = 8080;
 import Rotas from "./src/routes/routes.js";
 import dotenv from "dotenv";
 import cors from "cors";
-import fastifyCors from "fastify-cors";
+import fastifyCors from "@fastify/cors";
 cors();
 dotenv.config();
 
